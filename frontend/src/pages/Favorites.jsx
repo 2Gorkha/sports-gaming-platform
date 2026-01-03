@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import API from "../services/api.js"
 import { useNavigate } from "react-router-dom";
 
 export default function Favorites() {
@@ -19,8 +19,8 @@ export default function Favorites() {
 
     const fetchFavorites = async () => {
         try {
-            const res = await axios.get(
-                "http://localhost:5000/api/favorites",
+            const res = await API.get(
+                "/favorites",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -39,8 +39,8 @@ export default function Favorites() {
 
     const removeFavorite = async (gameId) => {
         try {
-            await axios.delete(
-                `http://localhost:5000/api/favorites/${gameId}`,
+            await API.delete(
+                `favorites/${gameId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -48,7 +48,6 @@ export default function Favorites() {
                 }
             );
 
-            // 🔥 Best practice: re-fetch from DB
             fetchFavorites();
         } catch (err) {
             console.error("Failed to remove favorite", err);

@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
-import axios from "axios";
+
+import API from "../services/api.js"
 
 
 export default function Games() {
@@ -20,7 +21,7 @@ export default function Games() {
 
             if (sport) params.sport = sport;
             if (provider) params.provider = provider;
-            const res = await axios.get("http://localhost:5000/api/games", {
+            const res = await API.get("/games", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -36,8 +37,8 @@ export default function Games() {
 
     const addFavorite = async (gameId) => {
         try {
-            await axios.post(
-                "http://localhost:5000/api/favorites",
+            await API.post(
+                "/favorites",
                 { gameId },
                 {
                     headers: {
@@ -53,7 +54,6 @@ export default function Games() {
 
     if (loading) return <p>Loading games...</p>;
 
-    // 🔥 GROUP BY SPORT
     const groupedGames = games.reduce((acc, game) => {
         acc[game.sport] = acc[game.sport] || [];
         acc[game.sport].push(game);

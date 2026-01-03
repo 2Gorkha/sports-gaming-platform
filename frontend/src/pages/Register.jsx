@@ -11,7 +11,7 @@ export default function Register() {
 
         try {
             const res = await API.post(
-                "/auth/register",
+                "/api/auth/register",
                 form
             );
 

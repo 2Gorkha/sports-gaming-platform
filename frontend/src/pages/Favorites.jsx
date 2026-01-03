@@ -20,7 +20,7 @@ export default function Favorites() {
     const fetchFavorites = async () => {
         try {
             const res = await API.get(
-                "/favorites",
+                "/api/favorites",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -40,7 +40,7 @@ export default function Favorites() {
     const removeFavorite = async (gameId) => {
         try {
             await API.delete(
-                `favorites/${gameId}`,
+                `/api/favorites/${gameId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

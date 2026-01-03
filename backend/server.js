@@ -11,8 +11,7 @@ const app = express();
 app.use(cors({
     origin: [
         "http://localhost:5173",
-        "https://sports-gaming-platform-frontend.vercel.app",
-        "*"
+        "https://sports-gaming-platform-frontend.vercel.app"
     ],
     credentials: true
 }));

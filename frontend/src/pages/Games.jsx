@@ -21,7 +21,7 @@ export default function Games() {
 
             if (sport) params.sport = sport;
             if (provider) params.provider = provider;
-            const res = await API.get("/api/games", {
+            const res = await API.get("/games", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -38,7 +38,7 @@ export default function Games() {
     const addFavorite = async (gameId) => {
         try {
             await API.post(
-                "/api/favorites",
+                "/favorites",
                 { gameId },
                 {
                     headers: {
